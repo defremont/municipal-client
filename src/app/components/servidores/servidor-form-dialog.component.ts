@@ -161,6 +161,7 @@ export interface ServidorFormDialogData {
   styles: [`
     .form-dialog {
       min-width: 500px;
+      margin: 24px;
     }
 
     .dialog-header {

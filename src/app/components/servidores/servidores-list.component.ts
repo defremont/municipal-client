@@ -43,18 +43,22 @@ import { ServidorFormDialogComponent } from './servidor-form-dialog.component';
       <mat-card>
         <mat-card-header>
           <mat-card-title>
-            <mat-toolbar color="primary">
-              <mat-icon>people</mat-icon>
-              <span>Gerenciamento de Servidores</span>
-              <span class="spacer"></span>
-              <button 
-                mat-raised-button 
-                color="accent" 
-                (click)="openCreateDialog()"
-                [disabled]="loadingState.loading">
-                <mat-icon>person_add</mat-icon>
-                Novo Servidor
-              </button>
+            <mat-toolbar color="primary" class="responsive-toolbar">
+              <div class="toolbar-content">
+                <div class="toolbar-title">
+                  <mat-icon>people</mat-icon>
+                  <span>Gerenciamento de Servidores</span>
+                </div>
+                <button 
+                  mat-raised-button 
+                  color="accent" 
+                  (click)="openCreateDialog()"
+                  [disabled]="loadingState.loading"
+                  class="add-button">
+                  <mat-icon>person_add</mat-icon>
+                  <span>Novo Servidor</span>
+                </button>
+              </div>
             </mat-toolbar>
           </mat-card-title>
         </mat-card-header>
@@ -145,9 +149,9 @@ import { ServidorFormDialogComponent } from './servidor-form-dialog.component';
             <div *ngIf="dataSource.data.length === 0" class="no-data">
               <mat-icon>person_outline</mat-icon>
               <p>Nenhum servidor encontrado</p>
-              <button mat-raised-button color="primary" (click)="openCreateDialog()">
+              <button mat-raised-button color="primary" (click)="openCreateDialog()" class="add-button">
                 <mat-icon>person_add</mat-icon>
-                Cadastrar Primeiro Servidor
+                <span>Cadastrar Primeiro Servidor</span>
               </button>
             </div>
 
@@ -171,8 +175,35 @@ import { ServidorFormDialogComponent } from './servidor-form-dialog.component';
 
 
 
-    .spacer {
-      flex: 1 1 auto;
+    .responsive-toolbar {
+      width: 100%;
+    }
+
+    .toolbar-content {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .toolbar-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .add-button {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .add-button mat-icon {
+      margin-right: 8px !important;
     }
 
     .table-container {
@@ -259,8 +290,24 @@ import { ServidorFormDialogComponent } from './servidor-form-dialog.component';
       border-radius: 4px 4px 0 0;
     }
 
-    /* Responsive table */
+    /* Responsive design */
     @media (max-width: 768px) {
+      .toolbar-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .toolbar-title {
+        min-width: auto;
+        width: 100%;
+      }
+
+      .add-button {
+        width: 100%;
+        justify-content: center;
+      }
+
       .servidores-table {
         font-size: 12px;
       }

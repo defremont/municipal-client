@@ -40,18 +40,22 @@ import { SecretariaFormDialogComponent } from './secretaria-form-dialog.componen
       <mat-card>
         <mat-card-header>
           <mat-card-title>
-            <mat-toolbar color="primary">
-              <mat-icon>business</mat-icon>
-              <span>Gerenciamento de Secretarias</span>
-              <span class="spacer"></span>
-              <button 
-                mat-raised-button 
-                color="accent" 
-                (click)="openCreateDialog()"
-                [disabled]="loadingState.loading">
-                <mat-icon>add</mat-icon>
-                Nova Secretaria
-              </button>
+            <mat-toolbar color="primary" class="responsive-toolbar">
+              <div class="toolbar-content">
+                <div class="toolbar-title">
+                  <mat-icon>business</mat-icon>
+                  <span>Gerenciamento de Secretarias</span>
+                </div>
+                <button 
+                  mat-raised-button 
+                  color="accent" 
+                  (click)="openCreateDialog()"
+                  [disabled]="loadingState.loading"
+                  class="add-button">
+                  <mat-icon>add</mat-icon>
+                  <span>Nova Secretaria</span>
+                </button>
+              </div>
             </mat-toolbar>
           </mat-card-title>
         </mat-card-header>
@@ -121,9 +125,9 @@ import { SecretariaFormDialogComponent } from './secretaria-form-dialog.componen
             <div *ngIf="dataSource.data.length === 0" class="no-data">
               <mat-icon>business_center</mat-icon>
               <p>Nenhuma secretaria encontrada</p>
-              <button mat-raised-button color="primary" (click)="openCreateDialog()">
+              <button mat-raised-button color="primary" (click)="openCreateDialog()" class="add-button">
                 <mat-icon>add</mat-icon>
-                Cadastrar Primeira Secretaria
+                <span>Cadastrar Primeira Secretaria</span>
               </button>
             </div>
 
@@ -147,8 +151,35 @@ import { SecretariaFormDialogComponent } from './secretaria-form-dialog.componen
 
 
 
-    .spacer {
-      flex: 1 1 auto;
+    .responsive-toolbar {
+      width: 100%;
+    }
+
+    .toolbar-content {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .toolbar-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .add-button {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .add-button mat-icon {
+      margin-right: 8px !important;
     }
 
     .table-container {
@@ -204,6 +235,25 @@ import { SecretariaFormDialogComponent } from './secretaria-form-dialog.componen
       width: 48px;
       height: 48px;
       margin-bottom: 16px;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .toolbar-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .toolbar-title {
+        min-width: auto;
+        width: 100%;
+      }
+
+      .add-button {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     mat-card-header {

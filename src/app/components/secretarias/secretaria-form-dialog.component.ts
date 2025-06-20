@@ -114,6 +114,7 @@ export interface SecretariaFormDialogData {
   styles: [`
     .form-dialog {
       min-width: 400px;
+      margin: 24px;
     }
 
     .dialog-header {
